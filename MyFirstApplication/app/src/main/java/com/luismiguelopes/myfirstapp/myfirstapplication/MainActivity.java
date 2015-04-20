@@ -21,6 +21,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
     private final static String LOG_TAG = "LOG_TAG";
     private TextView txtCounter = null;
+    private int RESULT_FLAG = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         Button btnBrowser = (Button) findViewById(R.id.btnBrowser);
         btnBrowser.setOnClickListener(this);
 
+        Button btnSave = (Button) findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(this);
+
         Button btnForSecondActivity = new Button(this);
         btnForSecondActivity.setText("Go to next activity");
         btnForSecondActivity.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -62,6 +66,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 startActivity(intentToOpenSecondActivity);
             }
         });
+
+
+
+
 
         /*
         Button btnIncr = (Button) findViewById(R.id.btnIncr);
@@ -122,12 +130,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             startActivity(intent);
         }
 
-
-
-
+        if (v.getId() == R.id.btnSave) {
+            Intent resultIntent = new Intent(getApplicationContext(), ResultActivity);
+            startActivityForResult(resultIntent, RESULT_FLAG);
+        }
 
 
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -185,5 +195,14 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         Log.d(LOG_TAG,"onDestroy");
 
         super.onDestroy();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RESULT_FLAG && resultCode == RESULT_OK) {
+            Toast.makeText(getApplicationContext(), data.getStringExtra(ResultActivity.NAME), Toast.LENGTH_LONG);
+        }
     }
 }
