@@ -64,6 +64,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 Intent intentToOpenSecondActivity = new Intent(getApplicationContext(), SecondActivity.class);
                 intentToOpenSecondActivity.putExtra(SecondActivity.COUNTER_VALUE_KEY_EXTRA, txtCounter.getText());
                 startActivity(intentToOpenSecondActivity);
+
+
             }
         });
 
