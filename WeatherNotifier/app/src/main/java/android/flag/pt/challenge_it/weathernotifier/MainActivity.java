@@ -4,12 +4,15 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity
@@ -20,14 +23,32 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final EditText time = (EditText)findViewById(R.id.editTxtTime);
+        //final EditText time = (EditText)findViewById(R.id.editTxtTime);
         final AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
         findViewById(R.id.btnStart).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                long interval = Long.parseLong(time.getText().toString());
+            public void onClick(View v) {
+
+
+
+
+
+
+          //      long interval = Long.parseLong(time.getText().toString());
+
+
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                Long interval = Long.parseLong(preferences.getString(PreferencesActivity.INTERVAL_KEY, "15"));
+                Log.d("LOG_TAG", interval + "");
+
+               /*
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putLong(PreferencesActivity.INTERVAL_KEY, 10);
+                editor.putString("Username", "Luis");
+                editor.commit();
+                 */
+
                 manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), interval * 1000, getPendingIntentForAlarmManager());
             }
         });
@@ -39,6 +60,15 @@ public class MainActivity extends ActionBarActivity
                 manager.cancel(getPendingIntentForAlarmManager());
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        String username = ((WeatherApplication)getApplication().getCredentials().getUsername();
+        Toast.makeText(getApplicationContext(), username, Toast.LENGTH_LONG).show();
+
     }
 
     private PendingIntent getPendingIntentForAlarmManager()
@@ -55,21 +85,15 @@ public class MainActivity extends ActionBarActivity
         return true;
     }
 
-    /*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_prefs) {
+            startActivity(new Intent(getApplicationContext(), PreferencesActivity.class));
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-    */
 }
