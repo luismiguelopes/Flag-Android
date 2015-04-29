@@ -1,4 +1,4 @@
-package com.luismiguelopes.temperatureapp.temperatureapp;
+package android.flag.pt.challenge_it.temperatureapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

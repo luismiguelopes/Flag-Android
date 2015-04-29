@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.luismiguelopes.temperatureapp.temperatureapp" >
+    package="android.flag.pt.challenge_it.temperatureapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -24,6 +24,18 @@
             android:enabled="true"
             android:exported="false" >
         </service>
-    </application>
+        <service
+            android:name=".TemperatureIntentService"
+            android:exported="false" >
+        </service>
 
+        <provider
+            android:name=".provider.TemperatureProvider"
+            android:authorities="android.flag.pt.challenge_it.temperatureapp.provider.temperatureprovider"
+            android:enabled="true"
+            android:exported="false" >
+        </provider>
+
+        <activity android:name=".TemperatureListActivity" />
+    </application>
 </manifest>
