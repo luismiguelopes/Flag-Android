@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Who Wants To Be Millionaire</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="btnNewGame">New Game</string>
+    <string name="btnSettings">Settings</string>
+    <string name="txtLang">Language</string>
+    <string name="txtTimeConfig">Update Timer</string>
+</resources>
