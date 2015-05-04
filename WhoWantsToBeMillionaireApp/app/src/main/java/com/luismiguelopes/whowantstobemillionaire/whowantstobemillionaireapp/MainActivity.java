@@ -24,6 +24,8 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 Intent intentToOpenGameActivity = new Intent(getApplicationContext(), GameActivity.class);
                 startActivity(intentToOpenGameActivity);
+
+
             }
         });
 
@@ -35,6 +37,7 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 Intent intentToOpenSettingsActivity = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intentToOpenSettingsActivity);
+
             }
         });
 

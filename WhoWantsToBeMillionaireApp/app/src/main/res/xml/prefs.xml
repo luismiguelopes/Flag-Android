@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ListPreference
+        android:key="prefUpdateFrequency"
+        android:title="Update Timer"
+        android:summary="Set Update Frequency"
+        android:entries="@array/updateFrequency"
+        android:entryValues="@array/updateFrequencyValues"
+        />
+
+
+</PreferenceScreen>
