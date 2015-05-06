@@ -26,8 +26,10 @@ public class MainActivity extends Activity {
                 startActivity(intentToOpenGameActivity);
 
 
+
             }
         });
+
 
         // Add Button to View in order to go to the SettingsActivity
         Button btnSettings = (Button) findViewById(R.id.btnSettings);

@@ -9,14 +9,16 @@ import android.provider.BaseColumns;
 public class MillionaireContract {
 
     // table name
-    public static final String TABLE = "TEMPERATURE";
+    public static final String TABLEQUESTIONS = "QUESTIONS";
+    public static final String TABLEANSWERS = "ANSWERS";
 
     // columns names
     public static final String _ID = BaseColumns._ID;
     public static final String VALUE = "value";
 
     // content URI for subset of provided data from temperature provider.
-    public static Uri CONTENT_PROVIDER = Uri.withAppendedPath(MillionaireProvider.CONTENT_URI, TABLE);
+    public static Uri CONTENT_PROVIDER_QUESTIONS = Uri.withAppendedPath(MillionaireProvider.CONTENT_URI, TABLEQUESTIONS);
+    public static Uri CONTENT_PROVIDER_ANSWERS = Uri.withAppendedPath(MillionaireProvider.CONTENT_URI, TABLEANSWERS);
 
 
 }

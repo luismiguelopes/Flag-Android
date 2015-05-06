@@ -1,10 +1,12 @@
 package com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp;
 
 import android.app.IntentService;
-import android.app.Service;
 import android.content.Intent;
-import android.os.IBinder;
 import android.util.Log;
+
+
+import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.model.Questions;
+import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.provider.MillionaireManager;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,11 +20,17 @@ import java.net.URL;
 public class MillionaireService extends IntentService {
 
     public static final String SERVICE_LOG = "SERVICE_LOG";
-    private static final String MILLIONAIRE_ID = "id";
+    private static final String MILLIONAIRE_QUESTION_ID = "id";
     private static final String MILLIONAIRE_QUESTIONS = "question";
-    public static final String MILLIONAIRE_ANSWERS = "answers";
-    private static final String MILLIONAIRE_RESPONSE = "correct";
+    //public static final String MILLIONAIRE_ANSWERS = "answers";
+    //private static final String MILLIONAIRE_RESPONSE = "correct";
 
+    private final MillionaireManager manager;
+
+    public MillionaireService() {
+        super("MillionaireService");
+        this.manager = new MillionaireManager(this);
+    }
 
 
     @Override
@@ -32,14 +40,6 @@ public class MillionaireService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
-
-
-    /* Created a new thread, 'cause the services run in main thread */
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
 
                 try {
                     URL url = new URL("http://54.187.166.51:81/questions");
@@ -59,17 +59,12 @@ public class MillionaireService extends IntentService {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject c = response.getJSONObject(i);
 
-                        String answers = c.getString(MILLIONAIRE_ANSWERS);
+                        String question = c.getString(MILLIONAIRE_QUESTIONS);
+                        int id = c.getInt(MILLIONAIRE_QUESTION_ID);
 
+                        manager.save(new Questions(id, question));
+                        Log.i(SERVICE_LOG, question + " ?");
                     }
-
-
-                    manager.save(new Answers(answers));
-
-
-
-
-
 
                 }
 
@@ -80,22 +75,4 @@ public class MillionaireService extends IntentService {
                 }
 
             }
-        }).start();
-
-        return START_NOT_STICKY;
-
-
-
-    }
-
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-}
+        }

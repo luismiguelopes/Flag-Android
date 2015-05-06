@@ -21,19 +21,27 @@ public class MillionaireProvider extends ContentProvider {
 
     // Matcher for see if the type is one element or all elements.
     private static UriMatcher URIMATCHER = new UriMatcher(UriMatcher.NO_MATCH);
-    private static final int TEMPERATURE_ID  = 1;
-    private static final int TEMPERATURE_ALL = 2;
+    private static final int QUESTIONS_ID  = 1;
+    private static final int QUESTIONS_ALL = 2;
+    private static final int ANSWERS_ID = 3;
+    private static final int ANSWERS_ALL = 4;
 
-    private static final String MIME_ALL = "vnd.android.cursor.dir/vnd.android.flag.pt.challenge_it.temperatureapp.provider." + MillionaireContract.TABLE;
-    private static final String MIME_ONE = "vnd.android.cursor.item/vnd.android.flag.pt.challenge_it.temperatureapp.provider." + MillionaireContract.TABLE;
+    private static final String MIME_ALL_QUESTIONS = "vnd.com.cursor.dir/vnd.com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.provider." + MillionaireContract.TABLEQUESTIONS;
+    private static final String MIME_ONE_QUESTIONS = "vnd.com.cursor.item/vnd.com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.provider." + MillionaireContract.TABLEQUESTIONS;
+    private static final String MIME_ALL_ANSWERS = "vnd.com.cursor.dir/vnd.com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.provider." + MillionaireContract.TABLEANSWERS;
+    private static final String MIME_ONE_ANSWERS = "vnd.com.cursor.dir/vnd.com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.provider." + MillionaireContract.TABLEANSWERS;
+
+
 
     // DB Helper instance for access to SQLite DB.
     private SQLiteOpenHelper helper;
 
     static
     {
-        URIMATCHER.addURI(AUTHORITY, MillionaireContract.TABLE+"/#", TEMPERATURE_ID);
-        URIMATCHER.addURI(AUTHORITY, MillionaireContract.TABLE, TEMPERATURE_ALL);
+        URIMATCHER.addURI(AUTHORITY, MillionaireContract.TABLEQUESTIONS+"/#", QUESTIONS_ID);
+        URIMATCHER.addURI(AUTHORITY, MillionaireContract.TABLEQUESTIONS, QUESTIONS_ALL);
+        URIMATCHER.addURI(AUTHORITY, MillionaireContract.TABLEANSWERS+"/#", ANSWERS_ID);
+        URIMATCHER.addURI(AUTHORITY, MillionaireContract.TABLEANSWERS, ANSWERS_ALL);
     }
 
     @Override
@@ -45,7 +53,7 @@ public class MillionaireProvider extends ContentProvider {
     @Override
     public String getType(Uri uri)
     {
-        return URIMATCHER.match(uri) == TEMPERATURE_ALL ? MIME_ALL : MIME_ONE;
+        return URIMATCHER.match(uri) == QUESTIONS_ALL ? MIME_ALL_QUESTIONS : MIME_ONE_QUESTIONS;
     }
 
     @Override
@@ -54,7 +62,7 @@ public class MillionaireProvider extends ContentProvider {
         SQLiteDatabase db = helper.getWritableDatabase();
         try
         {
-            long row = db.insert(MillionaireContract.TABLE, null, values);
+            long row = db.insert(MillionaireContract.TABLEQUESTIONS, null, values);
             return (row != -1) ? null : ContentUris.withAppendedId(uri, row);
         }
         finally
@@ -68,7 +76,7 @@ public class MillionaireProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder)
     {
         SQLiteDatabase db = helper.getReadableDatabase();
-        return db.query(MillionaireContract.TABLE, projection, selection, selectionArgs, null, null, sortOrder);
+        return db.query(MillionaireContract.TABLEQUESTIONS, projection, selection, selectionArgs, null, null, sortOrder);
     }
 
     @Override
@@ -78,7 +86,7 @@ public class MillionaireProvider extends ContentProvider {
         SQLiteDatabase db = helper.getWritableDatabase();
         try
         {
-            return db.update(MillionaireContract.TABLE, values, selection, selectionArgs);
+            return db.update(MillionaireContract.TABLEQUESTIONS, values, selection, selectionArgs);
         }
         finally
         {
@@ -92,7 +100,7 @@ public class MillionaireProvider extends ContentProvider {
         SQLiteDatabase db = helper.getWritableDatabase();
         try
         {
-            return db.delete(MillionaireContract.TABLE, selection, selectionArgs);
+            return db.delete(MillionaireContract.TABLEQUESTIONS, selection, selectionArgs);
         }
         finally
         {
@@ -117,9 +125,9 @@ public class MillionaireProvider extends ContentProvider {
         public void onCreate(SQLiteDatabase sqLiteDatabase)
         {
             String columns = MillionaireContract._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    MillionaireContract.VALUE + " REAL NOT NULL";
+                    MillionaireContract.VALUE + " TEXT NOT NULL";
 
-            String sql = "CREATE TABLE IF NOT EXISTS " + MillionaireContract.TABLE + " (" + columns + ")";
+            String sql = "CREATE TABLE IF NOT EXISTS " + MillionaireContract.TABLEQUESTIONS + " (" + columns + ")";
             sqLiteDatabase.execSQL(sql);
         }
 
