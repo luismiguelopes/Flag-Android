@@ -20,11 +20,11 @@ public class MillionaireManager {
 
     /**
      * Store Answers in database.
-     * @param answers
+     * @param questions
      */
     public void save(Questions questions) {
         ContentValues values = new ContentValues();
-        values.put(MillionaireContract.VALUE, questions.getValue());
+            values.put(MillionaireContract.VALUE, questions.getValue());
         _context.getContentResolver().insert(MillionaireProvider.CONTENT_URI, values);
     }
 

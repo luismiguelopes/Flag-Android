@@ -3,6 +3,7 @@ package com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp;
 import android.app.IntentService;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.TextView;
 
 
 import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.model.Questions;
@@ -24,6 +25,7 @@ public class MillionaireService extends IntentService {
     private static final String MILLIONAIRE_QUESTIONS = "question";
     //public static final String MILLIONAIRE_ANSWERS = "answers";
     //private static final String MILLIONAIRE_RESPONSE = "correct";
+
 
     private final MillionaireManager manager;
 
@@ -59,10 +61,12 @@ public class MillionaireService extends IntentService {
                     for (int i = 0; i < response.length(); i++) {
                         JSONObject c = response.getJSONObject(i);
 
-                        String question = c.getString(MILLIONAIRE_QUESTIONS);
                         int id = c.getInt(MILLIONAIRE_QUESTION_ID);
+                        String question = c.getString(MILLIONAIRE_QUESTIONS);
+
 
                         manager.save(new Questions(id, question));
+
                         Log.i(SERVICE_LOG, question + " ?");
                     }
 
@@ -75,4 +79,5 @@ public class MillionaireService extends IntentService {
                 }
 
             }
+
         }

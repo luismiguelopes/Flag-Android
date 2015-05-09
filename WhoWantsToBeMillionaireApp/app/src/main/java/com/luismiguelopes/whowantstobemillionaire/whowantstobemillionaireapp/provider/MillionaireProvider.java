@@ -46,7 +46,7 @@ public class MillionaireProvider extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        helper = new TemperatureHelper(getContext());
+        helper = new DatabaseHandler(getContext());
         return true;
     }
 
@@ -114,11 +114,11 @@ public class MillionaireProvider extends ContentProvider {
      * @pt Criação da base de dados com a tabela TEMPERATURE.
      * @author Challenge.IT
      */
-    private static class TemperatureHelper extends SQLiteOpenHelper
+    private static class DatabaseHandler extends SQLiteOpenHelper
     {
-        public TemperatureHelper(Context context)
+        public DatabaseHandler(Context context)
         {
-            super(context, "temperature.sql", null, 1);
+            super(context, "questions.sql", null, 1);
         }
 
         @Override

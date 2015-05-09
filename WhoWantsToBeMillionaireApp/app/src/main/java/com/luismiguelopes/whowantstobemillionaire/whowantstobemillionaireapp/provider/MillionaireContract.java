@@ -16,7 +16,7 @@ public class MillionaireContract {
     public static final String _ID = BaseColumns._ID;
     public static final String VALUE = "value";
 
-    // content URI for subset of provided data from temperature provider.
+    // content URI for subset of provided data from millionaireprovider.
     public static Uri CONTENT_PROVIDER_QUESTIONS = Uri.withAppendedPath(MillionaireProvider.CONTENT_URI, TABLEQUESTIONS);
     public static Uri CONTENT_PROVIDER_ANSWERS = Uri.withAppendedPath(MillionaireProvider.CONTENT_URI, TABLEANSWERS);
 
