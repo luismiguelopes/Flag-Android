@@ -1,10 +1,11 @@
 package com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp;
 
-
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,8 +15,7 @@ import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.mod
 import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.provider.GetQuestionsManager;
 
 
-
-public class GameActivity extends Activity implements View.OnClickListener {
+public class GamingActivity extends Activity implements View.OnClickListener {
 
     private Question[] questions;
     private int currentQuestionIndex;
@@ -103,7 +103,7 @@ public class GameActivity extends Activity implements View.OnClickListener {
 
     }
 
-    public class GetQuestionsTask extends AsyncTask<Void, Void, Question[]>{
+    public class GetQuestionsTask extends AsyncTask<Void, Void, Question[]> {
 
         @Override
         protected Question[] doInBackground(Void... voids) {
@@ -121,19 +121,32 @@ public class GameActivity extends Activity implements View.OnClickListener {
         protected void onPostExecute(Question[] questions) {
             super.onPostExecute(questions);
 
-            GameActivity.this.questions = questions;
-            GameActivity.this.currentQuestionIndex = 0;
+            GamingActivity.this.questions = questions;
+            GamingActivity.this.currentQuestionIndex = 0;
             changeToNextQuestion();
 
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_gaming, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
 
-
+        return super.onOptionsItemSelected(item);
+    }
 }
-
-
-
-

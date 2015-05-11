@@ -9,4 +9,13 @@
     <string name="txtLang">Language</string>
     <string name="txtTimeConfig">Update Timer</string>
     <string name="txtQuestion">Question: </string>
+    <string name="btnOne">1. </string>
+    <string name="btnTwo">2. </string>
+    <string name="btnThree">3. </string>
+    <string name="btnFour">4. </string>
+    <string name="btnPhone">Phone </string>
+    <string name="btnFiftyFifty">50:50</string>
+    <string name="btnPublic">Public</string>
+    <string name="toastGameOver">Game Over</string>
+    <string name="title_activity_gaming">GamingActivity</string>
 </resources>

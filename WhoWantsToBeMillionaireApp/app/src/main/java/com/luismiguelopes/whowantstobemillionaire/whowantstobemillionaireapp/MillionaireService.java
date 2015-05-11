@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 
-import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.model.Questions;
+import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.model.Question;
 import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.provider.MillionaireManager;
 
 import org.json.JSONArray;
@@ -65,7 +65,7 @@ public class MillionaireService extends IntentService {
                         String question = c.getString(MILLIONAIRE_QUESTIONS);
 
 
-                        manager.save(new Questions(id, question));
+                        manager.save(new Question(id, question));
 
                         Log.i(SERVICE_LOG, question + " ?");
                     }

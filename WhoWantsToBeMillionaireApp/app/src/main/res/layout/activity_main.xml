@@ -10,6 +10,8 @@
 
 
     <Button
+        android:background="@drawable/my_button"
+        android:elevation="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnNewGame"
@@ -21,11 +23,14 @@
 
 
     <Button
+        android:background="@drawable/my_button"
+        android:elevation="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btnSettings"
         android:id="@+id/btnSettings"
         android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/btnNewGame"
         android:layout_alignEnd="@+id/btnNewGame" />
 
 

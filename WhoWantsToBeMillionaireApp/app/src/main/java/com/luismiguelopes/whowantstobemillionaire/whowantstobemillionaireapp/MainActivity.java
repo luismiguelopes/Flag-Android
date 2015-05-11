@@ -22,10 +22,8 @@ public class MainActivity extends Activity {
         btnNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentToOpenGameActivity = new Intent(getApplicationContext(), GameActivity.class);
+                Intent intentToOpenGameActivity = new Intent(getApplicationContext(), GamingActivity.class);
                 startActivity(intentToOpenGameActivity);
-
-
 
             }
         });
@@ -39,13 +37,10 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 Intent intentToOpenSettingsActivity = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intentToOpenSettingsActivity);
+                startService(new Intent(getApplicationContext(), MillionaireService.class));
 
             }
         });
-
-
-
-
 
     }
 

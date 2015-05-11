@@ -3,7 +3,8 @@ package com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.pr
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.model.Questions;
+
+import com.luismiguelopes.whowantstobemillionaire.whowantstobemillionaireapp.model.Question;
 
 import java.util.ArrayList;
 
@@ -20,11 +21,11 @@ public class MillionaireManager {
 
     /**
      * Store Answers in database.
-     * @param questions
+     * @param question
      */
-    public void save(Questions questions) {
+    public void save(Question question) {
         ContentValues values = new ContentValues();
-            values.put(MillionaireContract.VALUE, questions.getValue());
+           // values.put(MillionaireContract.VALUE, question.getValue());
         _context.getContentResolver().insert(MillionaireProvider.CONTENT_URI, values);
     }
 
@@ -34,13 +35,13 @@ public class MillionaireManager {
      * Get all temperatures stored in database.
      * @return list of answers
      */
-    public ArrayList<Questions> getAll()
+    public ArrayList<Question> getAll()
     {
         Cursor cursor = _context.getContentResolver().query(MillionaireProvider.CONTENT_URI, null, null, null, null);
-        ArrayList<Questions> questions = new ArrayList<>();
+        ArrayList<Question> questions = new ArrayList<>();
         while(cursor.moveToNext())
         {
-            questions.add(new Questions(cursor.getInt(cursor.getColumnIndex(MillionaireContract._ID)),
+            questions.add(new Question(cursor.getInt(cursor.getColumnIndex(MillionaireContract._ID)),
                                         cursor.getString(cursor.getColumnIndex(MillionaireContract.VALUE))
 
 
