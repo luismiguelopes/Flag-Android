@@ -9,6 +9,8 @@ public class GetQuestionsManager {
 
     public static Question[] getAllTemp() {
 
+
+
         try {
             return QuestionsHttpRequest.getAll();
         } catch (Exception e) {
