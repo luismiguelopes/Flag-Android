@@ -14,8 +14,7 @@ import pt.android.flag.quemquersermilionario.Provider.OperationsManager;
 import pt.android.flag.quemquersermilionario.R;
 
 
-public class SecondActivity extends ActionBarActivity implements View.OnClickListener
-{
+public class SecondActivity extends ActionBarActivity implements View.OnClickListener {
 
     private Question[] questions;
     private int currentQuestionIndex;
@@ -24,7 +23,6 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
-
         new GetQuestionTask().execute();
         Button btnPhone = (Button) findViewById(R.id.btnPhone);
         btnPhone.setOnClickListener(new View.OnClickListener() {
@@ -57,14 +55,16 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
 
 
     }
-
     @Override
-    public void onClick (View view)
-    {
+    public void onClick (View view) {
         //If TRUE, the answer is correct
         if((boolean)view.getTag()) {
             this.currentQuestionIndex++;
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> origin/master
             if(currentQuestionIndex < 15) {
                 changeToNextQuestion();
             }
@@ -73,21 +73,30 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
             }
 
         }
+<<<<<<< HEAD
         else {
 
+=======
+         // If False, Show a Toast With Game Over
+        else {
+            /*
+            * If statement 
+            * to verify in
+            * what current
+            * question you are
+            * and if you already
+            * earn some money
+            * */
+>>>>>>> origin/master
             if (currentQuestionIndex > 3 && currentQuestionIndex < 10) {
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_first_checkpoint), Toast.LENGTH_SHORT).show();
             }
-
             if (currentQuestionIndex > 9 && currentQuestionIndex < 14) {
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_second_checkpoint), Toast.LENGTH_SHORT).show();
             }
-
-
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_game_over), Toast.LENGTH_SHORT).show();
             finish();
         }
-
     }
 
     private void changeToNextQuestion() {
@@ -96,29 +105,31 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
         TextView txtQuestion = (TextView)findViewById(R.id.txt_Question);
         txtQuestion.setText(question.getIdentifier() + " - " + question.getText());
 
-        for (Question.Answer answer : question.getAnswers())
-        {
-            switch (answer.getIdentifier())
-            {
-                case 'A': Button btnA = (Button)findViewById(R.id.btn_Answer_A);
+        for (Question.Answer answer : question.getAnswers()) {
+            switch (answer.getIdentifier()) {
+                case 'A':
+                    Button btnA = (Button)findViewById(R.id.btn_Answer_A);
                     btnA.setText(answer.getIdentifier() + " - " + answer.getText());
                     btnA.setTag(answer.isCorrect());
                     btnA.setOnClickListener(this);
                     break;
 
-                case 'B' : Button btnB = (Button)findViewById(R.id.btn_Answer_B);
+                case 'B' :
+                    Button btnB = (Button)findViewById(R.id.btn_Answer_B);
                     btnB.setText(answer.getIdentifier() + " - " + answer.getText());
                     btnB.setTag(answer.isCorrect());
                     btnB.setOnClickListener(this);
                     break;
 
-                case 'C': Button btnC = (Button)findViewById(R.id.btn_Answer_C);
+                case 'C':
+                    Button btnC = (Button)findViewById(R.id.btn_Answer_C);
                     btnC.setText(answer.getIdentifier() + " - " + answer.getText());
                     btnC.setTag(answer.isCorrect());
                     btnC.setOnClickListener(this);
                     break;
 
-                case 'D': Button btnD = (Button)findViewById(R.id.btn_Answer_D);
+                case 'D':
+                    Button btnD = (Button)findViewById(R.id.btn_Answer_D);
                     btnD.setText(answer.getIdentifier() + " - " + answer.getText());
                     btnD.setTag(answer.isCorrect());
                     btnD.setOnClickListener(this);
@@ -132,10 +143,14 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
 
     }
 
+<<<<<<< HEAD
 
 
     public class GetQuestionTask extends AsyncTask<Void, Void, Question[]>
     {
+=======
+    public class GetQuestionTask extends AsyncTask<Void, Void, Question[]> {
+>>>>>>> origin/master
 
         @Override
         protected Question[] doInBackground(Void... voids) {
@@ -158,6 +173,7 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
             changeToNextQuestion();
         }
     }
+<<<<<<< HEAD
 
     public String xpto() {
         Question question = this.questions[this.currentQuestionIndex];
@@ -167,3 +183,6 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
         return "";
     }
 }
+=======
+}
+>>>>>>> origin/master
