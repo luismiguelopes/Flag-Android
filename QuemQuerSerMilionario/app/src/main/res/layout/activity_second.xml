@@ -8,19 +8,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="50:50"
-        android:id="@+id/btnHelp1"
+        android:id="@+id/btnFiftyFifty"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/btnHelp2"
-        android:layout_toStartOf="@+id/btnHelp2" />
+        android:layout_alignParentStart="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajuda Publico"
-        android:id="@+id/btnHelp2"
+        android:text="@string/btnHelp"
+        android:id="@+id/btnHelp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -28,13 +26,12 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajuda Telefonica"
-        android:id="@+id/btnHelp3"
+        android:text="@string/btnPhone"
+        android:id="@+id/btnPhone"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/btnHelp2"
-        android:layout_toEndOf="@+id/btnHelp2" />
+        android:layout_alignParentEnd="true" />
+
 
 <LinearLayout
 android:orientation="vertical" android:layout_width="wrap_content"
@@ -47,7 +44,6 @@ android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/txt_Question"
-        android:layout_below="@+id/btnHelp1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="64dp"
         android:layout_gravity="center_vertical" />

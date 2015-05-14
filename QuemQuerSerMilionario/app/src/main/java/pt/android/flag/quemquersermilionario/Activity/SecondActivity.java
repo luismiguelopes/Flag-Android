@@ -1,7 +1,6 @@
 package pt.android.flag.quemquersermilionario.Activity;
 
-import android.app.ActionBar;
-import android.content.Intent;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -27,27 +26,54 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
         setContentView(R.layout.activity_second);
 
         new GetQuestionTask().execute();
+        Button btnPhone = (Button) findViewById(R.id.btnPhone);
+        btnPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_phone_help) + xpto(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+  /*      Button btnFiftyFifty = (Button) findViewById(R.id.btnFiftyFifty);
+        btnPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setVisibility(View.GONE);
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_fifty_help) + xpto(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        Button btnHelp = (Button) findViewById(R.id.btnHelp);
+        btnPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                view.setVisibility(View.GONE);
+
+            }
+        });*/
+
+
     }
 
     @Override
     public void onClick (View view)
     {
         //If TRUE, the answer is correct
-        if((boolean)view.getTag())
-        {
+        if((boolean)view.getTag()) {
             this.currentQuestionIndex++;
-            if(currentQuestionIndex < 15)
-            {
+
+            if(currentQuestionIndex < 15) {
                 changeToNextQuestion();
             }
-            else
-            {
+            else {
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_you_win), Toast.LENGTH_SHORT).show();
             }
 
         }
-        else
-        {
+        else {
 
             if (currentQuestionIndex > 3 && currentQuestionIndex < 10) {
                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast_first_checkpoint), Toast.LENGTH_SHORT).show();
@@ -64,8 +90,7 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
 
     }
 
-    private void changeToNextQuestion()
-    {
+    private void changeToNextQuestion() {
         Question question = this.questions[this.currentQuestionIndex];
 
         TextView txtQuestion = (TextView)findViewById(R.id.txt_Question);
@@ -103,7 +128,11 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
                     break;
             }
         }
+
+
     }
+
+
 
     public class GetQuestionTask extends AsyncTask<Void, Void, Question[]>
     {
@@ -128,5 +157,13 @@ public class SecondActivity extends ActionBarActivity implements View.OnClickLis
             SecondActivity.this.currentQuestionIndex = 0;
             changeToNextQuestion();
         }
+    }
+
+    public String xpto() {
+        Question question = this.questions[this.currentQuestionIndex];
+        for (Question.Answer answer : question.getAnswers()) {
+            answer.getIdentifier();
+        }
+        return "";
     }
 }

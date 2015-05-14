@@ -8,4 +8,8 @@
     <string name="toast_you_win">..:: Congratz You Win ::..</string>
     <string name="toast_first_checkpoint">Perfect! You\'ve got 500€</string>
     <string name="toast_second_checkpoint">Perfect! You\'ve got 500€</string>
+    <string name="toast_phone_help">I guess the correct answer is: </string>
+    <string name="btnHelp">Public Help</string>
+    <string name="btnPhone">Phone Call</string>
+    <string name="toast_fifty_help">70: , 10: , 10: , 10:</string>
 </resources>
